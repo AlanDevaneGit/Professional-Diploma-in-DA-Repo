@@ -19,5 +19,11 @@ print(data.isnull().values.any())
 player_names = pd.unique(data.full)
 print(player_names)
 
-#Test
+#Creating Array of Top 6 Clubs
+Top_6_Clubs = ['Liverpool','Manchester United','Manchester City','Arsenal','Chelsea','Tottenham']
+
+#Then slice the dataset to just show data from Top 6 Teams
+Top_6_Clubs_Data = data.loc[data['team'].isin(Top_6_Clubs)]
+
+print(Top_6_Clubs_Data)
 

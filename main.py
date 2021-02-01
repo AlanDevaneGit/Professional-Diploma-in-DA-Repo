@@ -44,18 +44,31 @@ Top_6_Clubs_Data = data.loc[data['team'].isin(Top_6_Clubs)]
 
 print(Top_6_Clubs_Data)
 
-Aaron_Connolly = ['Aaron Connolly']
+# Testing loc method to extract data from rows
+# using row name of Full Name of premier League player as index
 
-Aaron_Connolly_Stats = data.loc[data['full'].isin(Aaron_Connolly)]
+data = pd.read_csv("players_1920_fin.csv", index_col="full")
+Player1 = data.loc["John Egan"]
+Player2 = data.loc["Joel Matip"]
 
-Aaron_Connolly_Stats.info()
+#Printing out Player1 , followed by Player 2's stats for all Gameweeks
+print(Player1, "\n\n\n", Player2)
 
-x = Aaron_Connolly_Stats['ppm']
-y = Aaron_Connolly_Stats['bonus']
+
+
+
+#Aaron_Connolly = ['Aaron Connolly']
+
+#Aaron_Connolly_Stats = data.loc[data['full'].isin(Aaron_Connolly)]
+
+#Aaron_Connolly_Stats.info()
+
+#x = Aaron_Connolly_Stats['ppm']
+#y = Aaron_Connolly_Stats['bonus']
 
 # Bar chart
-plt.xlabel('ppm', fontsize=18)
-plt.ylabel('bonus', fontsize=16)
-plt.plot(x, y)
+#plt.xlabel('ppm', fontsize=18)
+#plt.ylabel('bonus', fontsize=16)
+#plt.plot(x, y)
 
-plt.show()
+#plt.show()

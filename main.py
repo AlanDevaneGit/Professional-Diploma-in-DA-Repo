@@ -38,7 +38,7 @@ data.info()
 player_names = pd.unique(data.full)
 print(player_names)
 
-#Creating Array of Top 6 Clubs
+#Creating List of Top 6 Clubs
 Top_6_Clubs = ['Liverpool','Manchester United','Manchester City','Arsenal','Chelsea','Tottenham']
 
 #Then slice the dataset to just show data from Top 6 Teams
@@ -62,11 +62,15 @@ print(Top_6_Clubs_Data)
 Restrcuted_Data_By_GW = data.sort_values(['kickoff_time','team'])
 print(Restrcuted_Data_By_GW.head(40))
 
-#Aaron_Connolly = ['Aaron Connolly']
+#Using grouping to find the Mean Bonus Points scored by Aaron Connolly each time he scored
+Aaron_Connolly = ['Aaron Connolly']
 
-#Aaron_Connolly_Stats = data.loc[data['full'].isin(Aaron_Connolly)]
+Aaron_Connolly_Stats = data.loc[data['full'].isin(Aaron_Connolly)]
 
-#Aaron_Connolly_Stats.info()
+Aaron_Connolly_BPS = Aaron_Connolly_Stats.groupby('goals_scored').bps.mean()
+print(Aaron_Connolly_BPS)
+
+
 
 #x = Aaron_Connolly_Stats['ppm']
 #y = Aaron_Connolly_Stats['bonus']

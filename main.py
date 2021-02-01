@@ -2,6 +2,20 @@
 
 # Imports
 import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+import numpy as np
+import requests
+
+
+### SECTION 1 ###
+#This Section is used to show off the dfferent Pyhton skills leanred over the course as per assignment guidelines.
+
+# Using API Scraping to get latest pices from Coinbase.com in EUR(Not used in Visualisations)
+url = 'https://api.coinbase.com/v2/prices/EUR/spot?'
+response = requests.get(url).json()
+print(response)
+
 
 # Importing CSV using Pandas Dataframe - Data from : https://www.kaggle.com/idoyo92/epl-stats-20192020
 data = pd.read_csv('players_1920_fin.csv')
@@ -15,6 +29,9 @@ print(data.head(30))
 # Checking for missing data
 print(data.isnull().values.any())
 
+# Checking types of data in the dataframe
+data.info()
+
 # Printing out FPL player names
 player_names = pd.unique(data.full)
 print(player_names)
@@ -27,3 +44,18 @@ Top_6_Clubs_Data = data.loc[data['team'].isin(Top_6_Clubs)]
 
 print(Top_6_Clubs_Data)
 
+Aaron_Connolly = ['Aaron Connolly']
+
+Aaron_Connolly_Stats = data.loc[data['full'].isin(Aaron_Connolly)]
+
+Aaron_Connolly_Stats.info()
+
+x = Aaron_Connolly_Stats['ppm']
+y = Aaron_Connolly_Stats['bonus']
+
+# Bar chart
+plt.xlabel('ppm', fontsize=18)
+plt.ylabel('bonus', fontsize=16)
+plt.plot(x, y)
+
+plt.show()

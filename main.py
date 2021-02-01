@@ -1,6 +1,7 @@
 #Setting up files for Project Rubric Assignment
 
 # Imports
+import dateutil
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -26,8 +27,9 @@ print(data.shape)
 # Prints out first 30  rows
 print(data.head(30))
 
-# Checking for missing data
+# Checking for missing data (There is none so no dropping of tables required.)
 print(data.isnull().values.any())
+
 
 # Checking types of data in the dataframe
 data.info()
@@ -47,15 +49,18 @@ print(Top_6_Clubs_Data)
 # Testing loc method to extract data from rows
 # using row name of Full Name of premier League player as index
 
-data = pd.read_csv("players_1920_fin.csv", index_col="full")
-Player1 = data.loc["John Egan"]
-Player2 = data.loc["Joel Matip"]
+#data = pd.read_csv("players_1920_fin.csv", index_col="full")
+#Player1 = data.loc["John Egan"]
+#Player2 = data.loc["Joel Matip"]
 
 #Printing out Player1 , followed by Player 2's stats for all Gameweeks
-print(Player1, "\n\n\n", Player2)
+#print(Player1, "\n\n\n", Player2)
 
 
+# Sorting Data by Gameweek using kickoff_time
 
+Restrcuted_Data_By_GW = data.sort_values(['kickoff_time','team'])
+print(Restrcuted_Data_By_GW.head(40))
 
 #Aaron_Connolly = ['Aaron Connolly']
 

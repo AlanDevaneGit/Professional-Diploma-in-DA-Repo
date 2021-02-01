@@ -70,6 +70,10 @@ Aaron_Connolly_Stats = data.loc[data['full'].isin(Aaron_Connolly)]
 Aaron_Connolly_BPS = Aaron_Connolly_Stats.groupby('goals_scored').bps.mean()
 print(Aaron_Connolly_BPS)
 
+# Using For Loop to display Aaron Connolly's Creativity V's each premier team this season
+print("Creativity, Opponent")
+for i in range(len(Aaron_Connolly_Stats)) :
+    print(Aaron_Connolly_Stats.iloc[i,5], Aaron_Connolly_Stats.iloc[i,14])
 
 
 #x = Aaron_Connolly_Stats['ppm']

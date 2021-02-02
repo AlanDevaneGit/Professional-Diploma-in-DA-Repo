@@ -20,6 +20,7 @@ import requests
 
 # Importing CSV using Pandas Dataframe - Data from : https://www.kaggle.com/idoyo92/epl-stats-20192020
 from Tools.scripts.dutree import display
+from pip._internal.utils.misc import tabulate
 
 data = pd.read_csv('players_1920_fin.csv', encoding = 'utf-8')
 
@@ -65,19 +66,19 @@ Restrcuted_Data_By_GW = data.sort_values(['kickoff_time','team'])
 #print(Restrcuted_Data_By_GW.head(40))
 
 #Using grouping to find the Mean Bonus Points scored by Aaron Connolly each time he scored
-Aaron_Connolly = ['Aaron Connolly']
+Mo_Salah = ['Mohamed Salah']
 
-Aaron_Connolly_Stats = data.loc[data['full'].isin(Aaron_Connolly)]
+Mo_Salah_Stats = data.loc[data['full'].isin(Mo_Salah)]
 
-Aaron_Connolly_BPS = Aaron_Connolly_Stats.groupby('goals_scored').bps.mean()
-#print(Aaron_Connolly_BPS)
+Mo_Salah_BPS = Mo_Salah_Stats.groupby('goals_scored').bps.mean()
+print(Mo_Salah_BPS)
 
 
 
-# Using For Loop to display Aaron Connolly's Creativity V's each premier team this season
+# Using For Loop to display Mo Salah's Creativity V's each premier team this season
 #print("Creativity, Opponent")
-#for i in range(len(Aaron_Connolly_Stats)) :
-   # print(Aaron_Connolly_Stats.iloc[i,5], Aaron_Connolly_Stats.iloc[i,14])
+#for i in range(len(Mo_Salah_Stats)) :
+   # print((Mo_Salah_Stats.iloc[i,5], Mo_Salah_Stats.iloc[i,14]))
 
 
 #Sorting Dataframe by Goals scored in a single game
@@ -117,32 +118,36 @@ Players_Scoring_Over_2 = Goals_Scored_Sort[Goals_Scored_Sort.goals_scored > 2][
 #ax.set_xlabel('Goals Scored')
 
 #plt.show()
+#plt.savefig('Players_Scoring_2_or_more_goals_in_a_GW_(Hat-trick).png')
 
-#plt.show()
 
 
 #Visualisation #2
 #Plotting the top 5 Players this season, based on their mean points total (total_points)
 
-Top_5_Scoring_Players = data.groupby('full')['total_points'].mean().sort_values(ascending=False).index.values
+#Top_5_Scoring_Players = data.groupby('full')['total_points'].mean().sort_values(ascending=False).index.values
 #sns.catplot(data=data, x='total_points',  y='full',kind='bar',ci=None, legend_out=False, order=Top_5_Scoring_Players[1:6])
-
+#plt.xlabel('% Average Gameweek Points')
+#plt.ylabel('Player Name')
+#plt.title('Top Scoring Players (avg)')
 #plt.show()
+#plt.savefig('Top_5_Highest_Players_by_GW_AVG_Points.png')
 
 #Visualisation #3
 # Plotting the Most Selected 11  players on average over the entire season
 
-#Top_5_Selected_Players = data.groupby('full')['selected'].mean().sort_values(ascending=False).index.values
-#ax =sns.catplot(data=data, x='selected',  y='full',kind='bar',ci=None, legend_out=False, order=Top_5_Selected_Players[1:11])
+#Top_11_Selected_Players = data.groupby('full')['selected'].mean().sort_values(ascending=False).index.values
+#ax =sns.catplot(data=data, x='selected',  y='full',kind='bar',ci=None, legend_out=False, order=Top_11_Selected_Players[1:11])
 #plt.title("Most selected FPL Player %")
 #ax.set(xlabel='% Selected by', ylabel='Player')
-#plt.show()
+
+plt.show()
+plt.savefig('Most_Selected_11_Players_This_Season.png')
 
 
 #Visualisation #4
 
-# When chosing Goalkeepers for FPL team, Clean Sheet Percentage is a top factor
-
+# When choosing Goalkeepers for FPL team, Clean Sheet Percentage is a top factor
 
 #Defining Top 4 teams Goalkeepers:
 
@@ -152,48 +157,48 @@ Alisson=data[data['full']=='Alisson Ramses Becker']
 Ederson=data[data['full']=='Ederson Santana de Moraes']
 
 
-labels_pie_1 = ['Clean Sheet', 'No Clean Sheet']
-colors = ['gold','lightcoral']
-CS_Probabibility = [DavidDeGea['clean_sheets'].value_counts()[1],
-         DavidDeGea['clean_sheets'].value_counts()[0],
+#labels_pie_1 = ['Clean Sheet', 'No Clean Sheet']
+#colors = ['gold','lightcoral']
+#CS_Probabibility = [DavidDeGea['clean_sheets'].value_counts()[1],
+#         DavidDeGea['clean_sheets'].value_counts()[0],
 
-        ]
-fig1, ax1 = plt.subplots()
-ax1.pie(CS_Probabibility, labels=labels_pie_1, autopct='%1.1f%%',colors=colors)
-ax1.set_title('David De Gea Clean Sheet %')
-ax1.axis('equal')
-
-plt.show()
-plt.savefig('David_De_Gea_Clean_Sheet_Percentage.png')
-
-labels_pie_2 = ['Clean Sheet', 'No Clean Sheet']
-colors = ['gold','lightcoral']
-CS_Probabibility = [BerndLeno['clean_sheets'].value_counts()[1],
-         BerndLeno['clean_sheets'].value_counts()[0],
-
-        ]
-fig2, ax1 = plt.subplots()
-ax1.pie(CS_Probabibility, labels=labels_pie_2, autopct='%1.1f%%',colors=colors)
-ax1.set_title('Bernd Leno Clean Sheet %')
-ax1.axis('equal')
-
-plt.show()
-plt.savefig('Bernd_Leno_Clean_Sheet_Percentage.png')
+#        ]
+#fig1, ax1 = plt.subplots()
+#ax1.pie(CS_Probabibility, labels=labels_pie_1, autopct='%1.1f%%',colors=colors)
+#ax1.set_title('David De Gea Clean Sheet %')
 
 
-labels_pie_3 = ['Clean Sheet', 'No Clean Sheet']
-colors = ['gold','lightcoral']
-CS_Probabibility = [Alisson['clean_sheets'].value_counts()[1],
-         Alisson['clean_sheets'].value_counts()[0],
+#plt.show()
+#plt.savefig('David_De_Gea_Clean_Sheet_Percentage.png')
 
-        ]
-fig3, ax1 = plt.subplots()
-ax1.pie(CS_Probabibility, labels=labels_pie_3, autopct='%1.1f%%',colors=colors)
-ax1.set_title('Alisson Becker Clean Sheet %')
-ax1.axis('equal')
+#labels_pie_2 = ['Clean Sheet', 'No Clean Sheet']
+#colors = ['gold','lightcoral']
+#CS_Probabibility = [BerndLeno['clean_sheets'].value_counts()[1],
+#         BerndLeno['clean_sheets'].value_counts()[0],
 
-plt.show()
-plt.savefig('Alisson_Clean_Sheet_Percentage.png')
+ #       ]
+#fig2, ax1 = plt.subplots()
+#ax1.pie(CS_Probabibility, labels=labels_pie_2, autopct='%1.1f%%',colors=colors)
+#ax1.set_title('Bernd Leno Clean Sheet %')
+
+
+#plt.show()
+#plt.savefig('Bernd_Leno_Clean_Sheet_Percentage.png')
+
+
+#labels_pie_3 = ['Clean Sheet', 'No Clean Sheet']
+#colors = ['gold','lightcoral']
+#CS_Probabibility = [Alisson['clean_sheets'].value_counts()[1],
+#         Alisson['clean_sheets'].value_counts()[0],
+
+#        ]
+#fig3, ax1 = plt.subplots()
+#ax1.pie(CS_Probabibility, labels=labels_pie_3, autopct='%1.1f%%',colors=colors)
+#ax1.set_title('Alisson Becker Clean Sheet %')
+
+
+#plt.show()
+#plt.savefig('Alisson_Clean_Sheet_Percentage.png')
 
 labels_pie_4 = ['Clean Sheet', 'No Clean Sheet']
 colors = ['gold','lightcoral']
@@ -204,7 +209,34 @@ CS_Probabibility = [Ederson['clean_sheets'].value_counts()[1],
 fig4, ax1 = plt.subplots()
 ax1.pie(CS_Probabibility, labels=labels_pie_4, autopct='%1.1f%%',colors=colors)
 ax1.set_title('Ederson Clean Sheet %')
-ax1.axis('equal')
 
 plt.show()
-#plt.savefig('Ederson_Clean_Sheet_Percentage.png')
+plt.savefig('Ederson_Clean_Sheet_Percentage.png')
+
+
+#Visualisation #5
+
+#Plotting different stats for Mo Salah ( Goals Scored, Bonus Points, Influence and Creativity)
+
+
+
+#Mo_Salah_Stats.plot.scatter(x ='creativity', y ="bps",marker='*')
+#plt.xlabel('Creativity')
+#plt.ylabel('Bonus Points')
+#plt.title('Mo_Salah_Creativity_V_BPS_Scatter')
+#plt.show()
+#plt.savefig('Mo_Salah_Creativity_V_BPS_Scatter.png')
+
+#Mo_Salah_Stats.plot.scatter(x ='creativity', y ="goals_scored", marker='*')
+#plt.xlabel('Creativity')
+#plt.ylabel('Goals Scored')
+#plt.title('Mo_Salah_Creativity_V_Goals_Scored_Scatter')
+#plt.show()
+#plt.savefig('Mo_Salah_Creativity_V_GoalsScored_Scatter.png')
+
+#Mo_Salah_Stats.plot.scatter(x ='influence', y ="goals_scored", marker='*')
+#plt.xlabel('Influence')
+#plt.ylabel('Goals Scored')
+#plt.title('Mo_Salah_Influence_V_Goals_Scored_Scatter')
+#plt.show()
+#plt.savefig('Mo_Salah_Influence_V_Goal_Scored_Scatter.png')

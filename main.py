@@ -81,12 +81,12 @@ Goals_Scored_Sort = data.sort_values(by='goals_scored', ascending=False)
 #print(Goals_Scored_Sort[["full","goals_scored"]])
 
 # Players scoring 2 or more goals in a game (Hattrick)
-Players_Scorring_Over_2 = Goals_Scored_Sort[Goals_Scored_Sort.goals_scored > 2][
+Players_Scoring_Over_2 = Goals_Scored_Sort[Goals_Scored_Sort.goals_scored > 2][
     ["full", "goals_scored"]]
 
 #Using Itterows here
 #print("Players Scoring a Hat-trick this season:")
-#for index, row in Players_Scorring_Over_2.iterrows():
+#for index, row in Players_Sorring_Over_2.iterrows():
   #  print(str(row[1]) + " Goals were scored by " + row[0])
 
 #Practicing Merging Dataframes
@@ -98,3 +98,18 @@ Players_Scorring_Over_2 = Goals_Scored_Sort[Goals_Scored_Sort.goals_scored > 2][
 #print("Aaron_Connolly_Stats dimensions: {}".format (Aaron_Connolly_Stats.shape))
 #print("Restrcuted_Data_By_GW: {}".format (Restrcuted_Data_By_GW[['goals_scored','kickoff_time','full']].shape))
 #print("FPL_Merge dimensions: {}".format (FPL_Merge.shape))
+
+
+#SECTION 2 - Visualisations
+
+
+#Visualisation #1
+
+
+sns.set_theme(style="darkgrid")
+ax = sns.barplot(x="goals_scored", y="full", data=Players_Scoring_Over_2)
+ax.set_title('Players to score Hat-tricks')
+ax.set_ylabel('Player Name')
+ax.set_xlabel('Goals Scored')
+
+plt.show()

@@ -25,7 +25,7 @@ from pip._internal.utils.misc import tabulate
 data = pd.read_csv('players_1920_fin.csv', encoding = 'utf-8')
 
 # Checking Data size( Print Col & Row's) using shape
-#print(data.shape)
+print(data.shape)
 
 # Prints out first 30  rows
 #print(data.head(30))
@@ -227,12 +227,6 @@ plt.savefig('Ederson_Clean_Sheet_Percentage.png')
 #plt.show()
 #plt.savefig('Mo_Salah_Creativity_V_BPS_Scatter.png')
 
-#Mo_Salah_Stats.plot.scatter(x ='creativity', y ="goals_scored", marker='*')
-#plt.xlabel('Creativity')
-#plt.ylabel('Goals Scored')
-#plt.title('Mo_Salah_Creativity_V_Goals_Scored_Scatter')
-#plt.show()
-#plt.savefig('Mo_Salah_Creativity_V_GoalsScored_Scatter.png')
 
 #Mo_Salah_Stats.plot.scatter(x ='influence', y ="goals_scored", marker='*')
 #plt.xlabel('Influence')

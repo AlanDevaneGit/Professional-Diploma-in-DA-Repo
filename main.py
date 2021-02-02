@@ -19,7 +19,7 @@ import requests
 
 
 # Importing CSV using Pandas Dataframe - Data from : https://www.kaggle.com/idoyo92/epl-stats-20192020
-data = pd.read_csv('players_1920_fin.csv')
+data = pd.read_csv('players_1920_fin.csv', encoding = 'utf-8')
 
 # Checking Data size( Print Col & Row's) using shape
 #print(data.shape)
@@ -42,9 +42,9 @@ player_names = pd.unique(data.full)
 Top_6_Clubs = ['Liverpool','Manchester United','Manchester City','Arsenal','Chelsea','Tottenham']
 
 #Then slice the dataset to just show data from Top 6 Teams
-Top_6_Clubs_Data = data.loc[data['team'].isin(Top_6_Clubs)]
+Top_6_Clubs_Data = data.loc[data['opponent_team'].isin(Top_6_Clubs)]
 
-#print(Top_6_Clubs_Data)
+print(Top_6_Clubs_Data)
 
 # Testing loc method to extract data from rows
 # using row name of Full Name of premier League player as index
@@ -106,10 +106,25 @@ Players_Scoring_Over_2 = Goals_Scored_Sort[Goals_Scored_Sort.goals_scored > 2][
 #Visualisation #1
 
 
-sns.set_theme(style="darkgrid")
-ax = sns.barplot(x="goals_scored", y="full", data=Players_Scoring_Over_2)
-ax.set_title('Players to score Hat-tricks')
-ax.set_ylabel('Player Name')
-ax.set_xlabel('Goals Scored')
+#sns.set_theme(style="darkgrid")
+#ax = sns.barplot(x="goals_scored", y="full", data=Players_Scoring_Over_2)
+#ax.set_title('Players to score Hat-tricks')
+#ax.set_ylabel('Player Name')
+#ax.set_xlabel('Goals Scored')
+
+#plt.show()
+
+#plt.show()
+
+
+#Visualisation #2
+#Plotting the top 5 Players this season, based on their mean points total (total_points)
+
+Top_5_Scoring_Players = data.groupby('full')['total_points'].mean().sort_values(ascending=False).index.values
+sns.catplot(data=data, x='total_points',  y='full',kind='bar',ci=None, legend_out=False, order=Top_5_Scoring_Players[1:6])
 
 plt.show()
+
+
+
+

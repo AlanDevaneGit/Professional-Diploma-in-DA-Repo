@@ -42,7 +42,7 @@ player_names = pd.unique(data.full)
 Top_6_Clubs = ['Liverpool','Manchester United','Manchester City','Arsenal','Chelsea','Tottenham']
 
 #Then slice the dataset to just show data from Top 6 Teams
-Top_6_Clubs_Data = data.loc[data['opponent_team'].isin(Top_6_Clubs)]
+Top_6_Clubs_Data = data.loc[data['team'].isin(Top_6_Clubs)]
 
 print(Top_6_Clubs_Data)
 
@@ -121,10 +121,16 @@ Players_Scoring_Over_2 = Goals_Scored_Sort[Goals_Scored_Sort.goals_scored > 2][
 #Plotting the top 5 Players this season, based on their mean points total (total_points)
 
 Top_5_Scoring_Players = data.groupby('full')['total_points'].mean().sort_values(ascending=False).index.values
-sns.catplot(data=data, x='total_points',  y='full',kind='bar',ci=None, legend_out=False, order=Top_5_Scoring_Players[1:6])
+#sns.catplot(data=data, x='total_points',  y='full',kind='bar',ci=None, legend_out=False, order=Top_5_Scoring_Players[1:6])
 
+#plt.show()
+
+#Visualisation #3
+# Plotting the Most Selected 11  players on average over the entire season
+
+Top_5_Selected_Players = data.groupby('full')['selected'].mean().sort_values(ascending=False).index.values
+ax =sns.catplot(data=data, x='selected',  y='full',kind='bar',ci=None, legend_out=False, order=Top_5_Selected_Players[1:11])
+plt.title("Most selected FPL Player %")
+ax.set(xlabel='% Selected by', ylabel='Player')
 plt.show()
-
-
-
 

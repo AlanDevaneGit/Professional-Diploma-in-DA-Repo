@@ -19,13 +19,11 @@ import requests
 
 
 # Importing CSV using Pandas Dataframe - Data from : https://www.kaggle.com/idoyo92/epl-stats-20192020
-from Tools.scripts.dutree import display
-from pip._internal.utils.misc import tabulate
 
-data = pd.read_csv('players_1920_fin.csv', encoding = 'utf-8')
+#data = pd.read_csv('players_1920_fin.csv', encoding = 'utf-8')
 
 # Checking Data size( Print Col & Row's) using shape
-print(data.shape)
+#print(data.shape)
 
 # Prints out first 30  rows
 #print(data.head(30))
@@ -35,19 +33,19 @@ print(data.shape)
 
 
 # Checking types of data in the dataframe
-data.info()
+#data.info()
 
 # Printing out FPL player names
-player_names = pd.unique(data.full)
+#player_names = pd.unique(data.full)
 #print(player_names)
 
 #Creating List of Top 6 Clubs
-Top_6_Clubs = ['Liverpool','Manchester United','Manchester City','Arsenal','Chelsea','Tottenham']
+#Top_6_Clubs = ['Liverpool','Manchester United','Manchester City','Arsenal','Chelsea','Tottenham']
 
 #Then slice the dataset to just show data from Top 6 Teams
-Top_6_Clubs_Data = data.loc[data['team'].isin(Top_6_Clubs)]
+#Top_6_Clubs_Data = data.loc[data['team'].isin(Top_6_Clubs)]
 
-print(Top_6_Clubs_Data)
+#print(Top_6_Clubs_Data)
 
 # Testing loc method to extract data from rows
 # using row name of Full Name of premier League player as index
@@ -62,16 +60,16 @@ print(Top_6_Clubs_Data)
 
 # Sorting Data by Gameweek using kickoff_time
 
-Restrcuted_Data_By_GW = data.sort_values(['kickoff_time','team'])
+#Restrcuted_Data_By_GW = data.sort_values(['kickoff_time','team'])
 #print(Restrcuted_Data_By_GW.head(40))
 
-#Using grouping to find the Mean Bonus Points scored by Aaron Connolly each time he scored
-Mo_Salah = ['Mohamed Salah']
+#Using grouping to find the Mean Bonus Points scored by Mo Salah each time he scored
+#Mo_Salah = ['Mohamed Salah']
 
-Mo_Salah_Stats = data.loc[data['full'].isin(Mo_Salah)]
+#Mo_Salah_Stats = data.loc[data['full'].isin(Mo_Salah)]
 
-Mo_Salah_BPS = Mo_Salah_Stats.groupby('goals_scored').bps.mean()
-print(Mo_Salah_BPS)
+#Mo_Salah_BPS = Mo_Salah_Stats.groupby('goals_scored').bps.mean()
+#print(Mo_Salah_BPS)
 
 
 
@@ -82,12 +80,12 @@ print(Mo_Salah_BPS)
 
 
 #Sorting Dataframe by Goals scored in a single game
-Goals_Scored_Sort = data.sort_values(by='goals_scored', ascending=False)
+#Goals_Scored_Sort = data.sort_values(by='goals_scored', ascending=False)
 #print(Goals_Scored_Sort[["full","goals_scored"]])
 
-# Players scoring 2 or more goals in a game (Hattrick)
-Players_Scoring_Over_2 = Goals_Scored_Sort[Goals_Scored_Sort.goals_scored > 2][
-    ["full", "goals_scored"]]
+# Players scoring 2 or more goals in a game (Hattrick) - using greateer than fromMUPY Package
+#Players_Scoring_Over_2 = Goals_Scored_Sort[Goals_Scored_Sort.goals_scored > 2][
+    #["full", "goals_scored"]]
 
 #Using Itterows here
 #print("Players Scoring a Hat-trick this season:")
@@ -96,11 +94,11 @@ Players_Scoring_Over_2 = Goals_Scored_Sort[Goals_Scored_Sort.goals_scored > 2][
 
 #Practicing Merging Dataframes
 
-#FPL_Merge = pd.merge(Aaron_Connolly_Stats,Restrcuted_Data_By_GW[['goals_scored','kickoff_time','full']], on='goals_scored')
+#FPL_Merge = pd.merge(Mo_Salah_Stats,Restrcuted_Data_By_GW[['goals_scored','kickoff_time','full']], on='goals_scored')
 #FPL_Merge.head
 
 #Below prints out the shape of both the Datafranes used, and the new Merged Datframe - Inner Merge
-#print("Aaron_Connolly_Stats dimensions: {}".format (Aaron_Connolly_Stats.shape))
+#print("Mo_Salah_Stats dimensions: {}".format (Mo_Salah_Stats.shape))
 #print("Restrcuted_Data_By_GW: {}".format (Restrcuted_Data_By_GW[['goals_scored','kickoff_time','full']].shape))
 #print("FPL_Merge dimensions: {}".format (FPL_Merge.shape))
 
@@ -141,8 +139,8 @@ Players_Scoring_Over_2 = Goals_Scored_Sort[Goals_Scored_Sort.goals_scored > 2][
 #plt.title("Most selected FPL Player %")
 #ax.set(xlabel='% Selected by', ylabel='Player')
 
-plt.show()
-plt.savefig('Most_Selected_11_Players_This_Season.png')
+#plt.show()
+#plt.savefig('Most_Selected_11_Players_This_Season.png')
 
 
 #Visualisation #4
@@ -151,10 +149,10 @@ plt.savefig('Most_Selected_11_Players_This_Season.png')
 
 #Defining Top 4 teams Goalkeepers:
 
-DavidDeGea=data[data['full']=='David de Gea']
-BerndLeno=data[data['full']=='Bernd Leno']
-Alisson=data[data['full']=='Alisson Ramses Becker']
-Ederson=data[data['full']=='Ederson Santana de Moraes']
+#DavidDeGea=data[data['full']=='David de Gea']
+#BerndLeno=data[data['full']=='Bernd Leno']
+#Alisson=data[data['full']=='Alisson Ramses Becker']
+#Ederson=data[data['full']=='Ederson Santana de Moraes']
 
 
 #labels_pie_1 = ['Clean Sheet', 'No Clean Sheet']
@@ -200,18 +198,18 @@ Ederson=data[data['full']=='Ederson Santana de Moraes']
 #plt.show()
 #plt.savefig('Alisson_Clean_Sheet_Percentage.png')
 
-labels_pie_4 = ['Clean Sheet', 'No Clean Sheet']
-colors = ['gold','lightcoral']
-CS_Probabibility = [Ederson['clean_sheets'].value_counts()[1],
-         Ederson['clean_sheets'].value_counts()[0],
+#labels_pie_4 = ['Clean Sheet', 'No Clean Sheet']
+#colors = ['gold','lightcoral']
+#CS_Probabibility = [Ederson['clean_sheets'].value_counts()[1],
+     #    Ederson['clean_sheets'].value_counts()[0],
 
-        ]
-fig4, ax1 = plt.subplots()
-ax1.pie(CS_Probabibility, labels=labels_pie_4, autopct='%1.1f%%',colors=colors)
-ax1.set_title('Ederson Clean Sheet %')
+     #   ]
+#fig4, ax1 = plt.subplots()
+#ax1.pie(CS_Probabibility, labels=labels_pie_4, autopct='%1.1f%%',colors=colors)
+#ax1.set_title('Ederson Clean Sheet %')
 
-plt.show()
-plt.savefig('Ederson_Clean_Sheet_Percentage.png')
+#plt.show()
+#plt.savefig('Ederson_Clean_Sheet_Percentage.png')
 
 
 #Visualisation #5

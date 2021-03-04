@@ -7,3 +7,6 @@ The project aims to analyse data from different data sources, manipulate informa
 A student can use any open-source dataset available online for analytics. Each bullet point for every learning outcome is a milestone to be achieved. 
 
 Due Date : 01/02/2021
+
+
+Update: Grade Awarded - Distinction (87%)
